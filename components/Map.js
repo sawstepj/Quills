@@ -22,18 +22,23 @@ const Map = () => (
 );
 
 
+const widthProportion = '100%';
+const heightProportion = 400;
 
 const styles = StyleSheet.create({
     container: {
       ...StyleSheet.absoluteFillObject,
-      height: 400,
-      width: 400,
+      height: heightProportion,
+      width: widthProportion,
       justifyContent: 'flex-end',
       alignItems: 'center',
+      borderWidth: 4,
+      borderColor: 'red',
     },
     map: {
       ...StyleSheet.absoluteFillObject,
     },
+    
    });
 
 export default Map;
