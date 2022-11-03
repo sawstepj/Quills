@@ -39,7 +39,7 @@ const App: () => Node = () => {
 
   return (
     <View>
-      <Map />
+      <Map/>
     </View>
   );
 };
