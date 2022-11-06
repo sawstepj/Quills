@@ -18,7 +18,7 @@ const Map = () => (
 );
 
 const widthProportion = '100%';
-const heightProportion = 400;
+const heightProportion = '75%';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 4,
     borderColor: 'red',
+    backgroundColor: '#CCFFCC',
   },
   map: {
     ...StyleSheet.absoluteFillObject,

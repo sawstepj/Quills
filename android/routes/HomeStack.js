@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import SplashScreen from '../screens/SplashScreen';
+import Splash from '../components/Splash';
 import HomeScreen from '../screens/HomeScreen';
 
 const Stack = createStackNavigator();
@@ -10,7 +10,7 @@ export default function HomeStack() {
     <Stack.Navigator>
       <Stack.Screen
         name="Splash"
-        component={SplashScreen}
+        component={Splash}
         options={{headerShown: false}}
       />
       <Stack.Screen name="Home" component={HomeScreen} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {View} from 'react';
 import Splash from '../../components/Splash';
 import HomeScreen from '../screens/HomeScreen';
 
@@ -12,7 +12,6 @@ export default class SplashScreen extends React.Component {
 
   componentDidMount() {
     this.timeoutHandle = setTimeout(() => {
-      // Add your logic for the transition
       this.setState({component: <HomeScreen />});
     }, 3000);
   }
