@@ -5,9 +5,10 @@
  * @format
  * @flow strict-local
  */
-import Navigator from './android/routes/HomeStack';
+import HomeStack from './android/routes/HomeStack';
 import React from 'react';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
 
 import {
   SafeAreaView,
@@ -38,9 +39,9 @@ const App = () => {
   };
 
   return (
-    <GestureHandlerRootView>
-      <Navigator />
-    </GestureHandlerRootView>
+    <NavigationContainer>
+      <HomeStack />
+    </NavigationContainer>
   );
 };
 

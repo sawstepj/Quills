@@ -1,11 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Text, View} from 'react-native';
 import Map from '../../components/Map';
 
-class HomeScreen extends Component {
-  render() {
-    return <Map />;
-  }
+export default function HomeScreen() {
+  return <Map />;
 }
-
-export default HomeScreen;
