@@ -5,9 +5,10 @@
  * @format
  * @flow strict-local
  */
-import Map from './components/Map';
+import Navigator from './android/routes/HomeStack';
 import React from 'react';
-import type {Node} from 'react';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+
 import {
   SafeAreaView,
   ScrollView,
@@ -29,8 +30,7 @@ import {
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
 
-
-const App: () => Node = () => {
+const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -38,9 +38,9 @@ const App: () => Node = () => {
   };
 
   return (
-    <View>
-      <Map/>
-    </View>
+    <GestureHandlerRootView>
+      <Navigator />
+    </GestureHandlerRootView>
   );
 };
 
