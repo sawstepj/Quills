@@ -1,26 +1,33 @@
-import React, {View} from 'react';
-import Splash from '../../components/Splash';
-import HomeScreen from '../screens/HomeScreen';
+import React, {useEffect} from 'react';
+import {View, Image, StyleSheet} from 'react-native';
 
-export default class SplashScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      component: <Splash />,
-    };
-  }
+export default function SplashScreen({navigation}) {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.navigate('HomeScreen');
+    }, 1000);
+    return () => clearTimeout(timer);
+  });
 
-  componentDidMount() {
-    this.timeoutHandle = setTimeout(() => {
-      this.setState({component: <HomeScreen />});
-    }, 3000);
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.timeoutHandle);
-  }
-
-  render() {
-    return this.state.component;
-  }
+  return (
+    <View style={styles.container}>
+      <Image
+        style={styles.logo}
+        source={require('../assets/Transparent_BG_Quills_Logo.png')}
+      />
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: '45%',
+    height: '100%',
+    width: '100%',
+    backgroundColor: '#CCFFCC',
+  },
+  logo: {
+    width: 'auto',
+    height: 75,
+  },
+});
