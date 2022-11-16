@@ -1,16 +1,19 @@
-import {StyleSheet, View} from 'react-native';
-import React, {useState} from 'react';
+import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
+import React, {useState, useEffect, useRef} from 'react';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 
-export default function Map() {
+function ClearQuills(e, setQuills) {
+  e.preventDefault();
+  setQuills([]);
+}
+
+export default function Map(props) {
   const region = {
     latitude: 37.78825,
     longitude: -122.4324,
     latitudeDelta: 0.015,
     longitudeDelta: 0.0121,
   };
-
-  //get initial location
 
   const [quills, setQuills] = useState([
     {
@@ -22,6 +25,14 @@ export default function Map() {
       description: 'Test',
     },
   ]);
+
+  //create a ref to quills
+  const quillsRef = useRef('');
+
+  //useEffect for quillsRef
+  useEffect(() => {
+    quillsRef.current = setQuills;
+  }, [setQuills]);
 
   // Add a marker to the map
   const addMarker = e => {
@@ -36,12 +47,16 @@ export default function Map() {
     ]);
   };
 
+  //function to clear quills from map
+
+  console.log('quills in Map ==>', quills);
   return (
     <View style={styles.container}>
       <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         initialRegion={region}
+        quillsArray={quills}
         onPress={e => {
           addMarker(e);
         }}>
@@ -51,7 +66,6 @@ export default function Map() {
             coordinate={quill.coordinate}
             title={quill.title}
             description={quill.description}
-            //add marker to array
           />
         ))}
       </MapView>
@@ -74,4 +88,18 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
   },
+  button: {
+    flex: 1,
+    alignItems: 'center',
+    borderWidth: 4,
+    borderRadius: 5,
+    marginBottom: 30,
+    borderColor: '#EC729C',
+    backgroundColor: '#EC729C',
+    marginRight: 200,
+    marginLeft: 20,
+    marginTop: 30,
+  },
 });
+
+export {ClearQuills};
