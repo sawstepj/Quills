@@ -2,11 +2,6 @@ import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
 import React, {useState, useEffect, useRef} from 'react';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 
-function ClearQuills(e, setQuills) {
-  e.preventDefault();
-  setQuills([]);
-}
-
 export default function Map(props) {
   const region = {
     latitude: 37.78825,
@@ -15,33 +10,7 @@ export default function Map(props) {
     longitudeDelta: 0.0121,
   };
 
-  const [quills, setQuills] = useState([
-    {
-      coordinate: {
-        latitude: 37.78825,
-        longitude: -122.4324,
-      },
-      title: 'Test',
-      description: 'Test',
-    },
-  ]);
-
-  // Add a marker to the map
-  const addMarker = e => {
-    setQuills([
-      ...quills,
-      {
-        coordinate: {
-          latitude: e.nativeEvent.coordinate.latitude,
-          longitude: e.nativeEvent.coordinate.longitude,
-        },
-      },
-    ]);
-  };
-
-  //function to clear quills from map
-
-  console.log('quills in Map ==>', quills);
+  console.log('quills in Map ==>', props.quills);
   return (
     <View style={styles.container}>
       <MapView
@@ -50,7 +19,7 @@ export default function Map(props) {
         initialRegion={region}
         quillsArray={quills}
         onPress={e => {
-          addMarker(e);
+          this.props.addMarker(e);
         }}>
         {quills.map(quill => (
           <Marker
@@ -93,5 +62,3 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
 });
-
-export {ClearQuills};

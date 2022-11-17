@@ -4,6 +4,7 @@ import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 export default function ProfileScreen({navigation}) {
   return (
     <View style={styles.container}>
+      {/* need to use some sort of list formatting for profileComponents */}
       <TouchableOpacity
         title="Back"
         style={styles.button}

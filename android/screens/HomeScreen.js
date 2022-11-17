@@ -1,11 +1,11 @@
 import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import Map, {ClearQuills} from '../components/Map';
+import Map from '../components/Map';
+import ClearQuillsHandler from '../components/ClearQuillsHandler';
 
 export default function HomeScreen(props) {
   return (
     <View style={styles.container}>
-      <Map ref={this.Map1} />
       <TouchableOpacity
         title="Profile"
         style={styles.button}
@@ -17,7 +17,7 @@ export default function HomeScreen(props) {
       <TouchableOpacity
         title="Clear"
         onPress={e => {
-          ClearQuills(e, this.props.children.setQuills);
+          ClearQuillsHandler();
         }}
         style={styles.button}>
         <Text style={styles.label}>Clear</Text>
