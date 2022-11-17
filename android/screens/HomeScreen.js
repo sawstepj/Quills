@@ -5,24 +5,28 @@ import Map, {ClearQuills} from '../components/Map';
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {count: 0};
+    this.Map1 = React.createRef();
+    const currentMap1 = this.Map1.current;
   }
+
 
   render() {
     console.log('current', Map.setQuills);
     return (
       <View style={styles.container}>
-        <Map />
+        <Map ref={this.Map1} />
         <TouchableOpacity
           title="Profile"
           style={styles.button}
-          onPress={this.onPress}>
+          onPress={e => {
+            this.props.navigation.navigate('ProfileScreen');
+          }}>
           <Text style={styles.label}>Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity
           title="Clear"
           onPress={e => {
-            console.log(ClearQuills(e, Map.setQuills));
+            ClearQuills(e, Map.setQuills);
           }}
           style={styles.button}>
           <Text style={styles.label}>Clear</Text>

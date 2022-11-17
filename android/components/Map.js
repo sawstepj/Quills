@@ -25,15 +25,7 @@ export default function Map(props) {
       description: 'Test',
     },
   ]);
-
-  //create a ref to quills
-  const quillsRef = useRef('');
-
-  //useEffect for quillsRef
-  useEffect(() => {
-    quillsRef.current = setQuills;
-  }, [setQuills]);
-
+  
   // Add a marker to the map
   const addMarker = e => {
     setQuills([
