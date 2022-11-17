@@ -21,7 +21,7 @@ export default function Map(props) {
         onPress={e => {
           this.props.addMarker(e);
         }}>
-        {quills.map(quill => (
+        {props.quills.map(quill => (
           <Marker
             key={quill.coordinate.latitude}
             coordinate={quill.coordinate}

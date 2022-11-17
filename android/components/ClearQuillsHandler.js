@@ -18,6 +18,6 @@ export default function ClearQuillsHandler(props) {
 
   return (
     //pass state to Map
-    <Map quills={quills} />
+    <Map quills={quills} setQuills={setQuills} />
   );
 }
