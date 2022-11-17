@@ -9,7 +9,6 @@ export default class HomeScreen extends React.Component {
     const currentMap1 = this.Map1.current;
   }
 
-
   render() {
     console.log('current', Map.setQuills);
     return (

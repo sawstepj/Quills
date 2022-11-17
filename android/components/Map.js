@@ -25,7 +25,7 @@ export default function Map(props) {
       description: 'Test',
     },
   ]);
-  
+
   // Add a marker to the map
   const addMarker = e => {
     setQuills([

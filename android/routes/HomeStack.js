@@ -19,7 +19,7 @@ export default function HomeStack() {
         component={HomeScreen}
         options={{headerShown: false}}
       />
-      <Stack.Screen 
+      <Stack.Screen
         name="ProfileScreen"
         component={ProfileScreen}
         options={{headerShown: false}}
