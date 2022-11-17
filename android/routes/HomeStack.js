@@ -6,7 +6,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 
 const Stack = createStackNavigator();
 
-export default function HomeStack() {
+export default function HomeStack(props) {
   return (
     <Stack.Navigator>
       <Stack.Screen

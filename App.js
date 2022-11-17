@@ -31,7 +31,7 @@ import {
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
 
-const App = () => {
+const App = props => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
