@@ -1,23 +1,22 @@
 import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import Map from '../components/Map';
-import ClearQuillsHandler from '../components/ClearQuillsHandler';
 
 export default function HomeScreen(props) {
+  console.log(props);
   return (
     <View style={styles.container}>
       <TouchableOpacity
         title="Profile"
         style={styles.button}
         onPress={e => {
-          this.props.navigation.navigate('ProfileScreen');
+          props.navigation.navigate('ProfileScreen');
         }}>
         <Text style={styles.label}>Profile</Text>
       </TouchableOpacity>
       <TouchableOpacity
         title="Clear"
         onPress={e => {
-          ClearQuillsHandler();
+          props.clearMarkers(e);
         }}
         style={styles.button}>
         <Text style={styles.label}>Clear</Text>
@@ -29,7 +28,7 @@ export default function HomeScreen(props) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#CCFFCC',
-    height: '100%',
+    height: '10%',
   },
   button: {
     flex: 1,

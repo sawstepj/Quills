@@ -1,5 +1,5 @@
 import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, Fragment} from 'react';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 
 export default function Map(props) {
@@ -10,16 +10,15 @@ export default function Map(props) {
     longitudeDelta: 0.0121,
   };
 
-  console.log('quills in Map ==>', props.quills);
   return (
     <View style={styles.container}>
       <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         initialRegion={region}
-        quillsArray={quills}
+        quillsArray={props.quills}
         onPress={e => {
-          this.props.addMarker(e);
+          props.addMarker(e);
         }}>
         {props.quills.map(quill => (
           <Marker
@@ -48,17 +47,5 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
-  },
-  button: {
-    flex: 1,
-    alignItems: 'center',
-    borderWidth: 4,
-    borderRadius: 5,
-    marginBottom: 30,
-    borderColor: '#EC729C',
-    backgroundColor: '#EC729C',
-    marginRight: 200,
-    marginLeft: 20,
-    marginTop: 30,
   },
 });
