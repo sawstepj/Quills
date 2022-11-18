@@ -1,18 +1,15 @@
 import React from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, Div} from 'react-native';
+import ProfileComponent from '../components/ProfileComponent';
 
-export default function ProfileScreen({navigation}) {
+export default function ProfileScreen(props) {
+  //get marker data from HomeScreen
+  const markerData = props.route.params.markerData;
+  console.log('MARKER DATA==>', markerData);
   return (
     <View style={styles.container}>
       {/* need to use some sort of list formatting for profileComponents */}
-      <TouchableOpacity
-        title="Back"
-        style={styles.button}
-        onPress={e => {
-          navigation.navigate('HomeScreen');
-        }}>
-        <Text style={styles.label}>Back</Text>
-      </TouchableOpacity>
+      <ProfileComponent />
     </View>
   );
 }

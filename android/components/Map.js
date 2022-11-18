@@ -9,6 +9,7 @@ export default function Map(props) {
     latitudeDelta: 0.015,
     longitudeDelta: 0.0121,
   };
+  console.log('PROPS.QUILLS==>', props.quills);
 
   return (
     <View style={styles.container}>

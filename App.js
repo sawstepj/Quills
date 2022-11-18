@@ -9,27 +9,8 @@ import HomeStack from './android/routes/HomeStack';
 import React from 'react';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
-
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
+import {StyleSheet, useColorScheme} from 'react-native';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const App = props => {
   const isDarkMode = useColorScheme() === 'dark';

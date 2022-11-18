@@ -1,26 +1,25 @@
-import React from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, View} from 'react-native';
+import Map from '../components/Map';
+import HomeScreenButtons from '../components/HomeScreenButtons';
 
 export default function HomeScreen(props) {
-  console.log(props);
+  console.log('quills', props.quills);
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        title="Profile"
-        style={styles.button}
-        onPress={e => {
-          props.navigation.navigate('ProfileScreen');
-        }}>
-        <Text style={styles.label}>Profile</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        title="Clear"
-        onPress={e => {
-          props.clearMarkers(e);
-        }}
-        style={styles.button}>
-        <Text style={styles.label}>Clear</Text>
-      </TouchableOpacity>
+      <Map
+        quills={props.quills}
+        addMarker={props.addMarker}
+        clearMarkers={props.clearMarkers}
+        setQuills={props.setQuills}
+      />
+      <HomeScreenButtons
+        quills={props.quills}
+        setQuills={props.setQuills}
+        clearMarkers={props.clearMarkers}
+        navigation={props.navigation}
+      />
     </View>
   );
 }
@@ -28,7 +27,7 @@ export default function HomeScreen(props) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#CCFFCC',
-    height: '10%',
+    height: '100%',
   },
   button: {
     flex: 1,
