@@ -1,18 +1,14 @@
 import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 
-export default function HomeScreenButtons({props, navigation}) {
+export default function HomeScreenButtons(props) {
   return (
     <View style={styles.container}>
       <TouchableOpacity
         title="Profile"
         style={styles.button}
         onPress={e => {
-          navigation.navigate('ProfileScreen', {
-            quills: props.quills,
-            setQuills: props.setQuills,
-            clearMarkers: props.clearMarkers,
-          });
+          props.navigation.navigate('ProfileScreen');
         }}>
         <Text style={styles.label}>Profile</Text>
       </TouchableOpacity>

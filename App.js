@@ -11,6 +11,7 @@ import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {StyleSheet, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import GlobalContext from './android/global/GlobalContext';
 
 const App = props => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -21,7 +22,7 @@ const App = props => {
 
   return (
     <NavigationContainer>
-      <HomeStack />
+      <GlobalContext subPages={<HomeStack />} />
     </NavigationContainer>
   );
 };

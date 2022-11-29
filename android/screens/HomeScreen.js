@@ -1,37 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
 import Map from '../components/Map';
 import HomeScreenButtons from '../components/HomeScreenButtons';
+import {UserContext} from '../global/GlobalContext';
 
 export default function HomeScreen(props) {
-  console.log('quills', props.quills);
-
-  const [quills, setQuills] = useState([
-    {
-      coordinate: {
-        latitude: 37.78825,
-        longitude: -122.4324,
-      },
-      title: 'Test',
-      description: 'Test',
-    },
-  ]);
-
-  //addMarker function
-  const addMarker = e => {
-    setQuills([
-      ...quills,
-      {
-        coordinate: e.nativeEvent.coordinate,
-      },
-    ]);
-  };
-
-  //clearMarkers function
-  const clearMarkers = e => {
-    setQuills([]);
-  };
-
+  //grab the quills array and the setQuills function from the global context
+  const {quills, setQuills, addMarker, clearMarkers} = useContext(UserContext);
+  console.log('quills', quills);
   return (
     <View style={styles.container}>
       <Map

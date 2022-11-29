@@ -1,14 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Text, View, StyleSheet, Div} from 'react-native';
 import ProfileComponent from '../components/ProfileComponent';
+import {UserContext} from '../global/GlobalContext';
 
-export default function ProfileScreen({route, navigation}) {
-  //get marker data from HomeScreen
-  const {quills, setQuills, clearMarkers} = route.params;
+export default function ProfileScreen(props, route, navigation) {
+  const {quills, setQuills, clearMarkers} = useContext(UserContext);
+  //render the quills array
   return (
     <View style={styles.container}>
-      {/* need to use some sort of list formatting for profileComponents */}
-      <ProfileComponent />
+      <ProfileComponent
+        quills={quills}
+        setQuills={setQuills}
+        clearMarkers={clearMarkers}
+        navigation={props.navigation}
+      />
     </View>
   );
 }
