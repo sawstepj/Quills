@@ -2,10 +2,9 @@ import React from 'react';
 import {Text, View, StyleSheet, Div} from 'react-native';
 import ProfileComponent from '../components/ProfileComponent';
 
-export default function ProfileScreen(props) {
+export default function ProfileScreen({route, navigation}) {
   //get marker data from HomeScreen
-  const markerData = props.route.params.markerData;
-  console.log('MARKER DATA==>', markerData);
+  const {quills, setQuills, clearMarkers} = route.params;
   return (
     <View style={styles.container}>
       {/* need to use some sort of list formatting for profileComponents */}

@@ -6,18 +6,44 @@ import HomeScreenButtons from '../components/HomeScreenButtons';
 export default function HomeScreen(props) {
   console.log('quills', props.quills);
 
+  const [quills, setQuills] = useState([
+    {
+      coordinate: {
+        latitude: 37.78825,
+        longitude: -122.4324,
+      },
+      title: 'Test',
+      description: 'Test',
+    },
+  ]);
+
+  //addMarker function
+  const addMarker = e => {
+    setQuills([
+      ...quills,
+      {
+        coordinate: e.nativeEvent.coordinate,
+      },
+    ]);
+  };
+
+  //clearMarkers function
+  const clearMarkers = e => {
+    setQuills([]);
+  };
+
   return (
     <View style={styles.container}>
       <Map
-        quills={props.quills}
-        addMarker={props.addMarker}
-        clearMarkers={props.clearMarkers}
-        setQuills={props.setQuills}
+        quills={quills}
+        addMarker={addMarker}
+        clearMarkers={clearMarkers}
+        setQuills={setQuills}
       />
       <HomeScreenButtons
-        quills={props.quills}
-        setQuills={props.setQuills}
-        clearMarkers={props.clearMarkers}
+        quills={quills}
+        setQuills={setQuills}
+        clearMarkers={clearMarkers}
         navigation={props.navigation}
       />
     </View>
