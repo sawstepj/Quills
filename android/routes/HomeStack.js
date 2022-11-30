@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import SplashScreen from '../screens/SplashScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import HomeScreen from '../screens/HomeScreen';
+import QuillScreen from '../screens/QuillScreen';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,11 @@ export default function HomeStack(props) {
       <Stack.Screen
         name="ProfileScreen"
         component={ProfileScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="QuillScreen"
+        component={QuillScreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

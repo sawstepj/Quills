@@ -2,8 +2,6 @@ import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 
 export default function ProfileComponent(props, navigation) {
-  //modular component for profile screen
-  //returns one quill
   return (
     <View>
       {props.quills.map((quill, index) => {
@@ -12,8 +10,14 @@ export default function ProfileComponent(props, navigation) {
             style={styles.button}
             quills={quill}
             key={index}
-            navigation={props.navigation}>
-            <Text style={styles.label}>{quill.title}</Text>
+            navigation={props.navigation}
+            onPress={() => {
+              props.navigation.navigate('QuillScreen', {
+                quill: quill,
+                index: index,
+              });
+            }}>
+            <Text style={styles.label}>{index + 1}</Text>
           </TouchableOpacity>
         );
       })}
@@ -24,6 +28,7 @@ export default function ProfileComponent(props, navigation) {
 const styles = StyleSheet.create({
   button: {
     height: '100%',
+    width: 300,
     flex: 1,
     alignItems: 'center',
     borderWidth: 4,

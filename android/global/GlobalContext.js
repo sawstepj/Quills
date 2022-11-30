@@ -9,8 +9,8 @@ export default function GlobalContext({subPages}) {
         latitude: 37.78825,
         longitude: -122.4324,
       },
-      title: 'Test',
-      description: 'Test',
+      title: 'Example',
+      description: 'Here is an example of a quill',
     },
   ]);
   //addMarker function

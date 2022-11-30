@@ -24,8 +24,9 @@ export default function Map(props) {
           <Marker
             key={quill.coordinate.latitude}
             coordinate={quill.coordinate}
-            title={quill.title}
+            title={'Quill ' + (props.quills.indexOf(quill) + 1)}
             description={quill.description}
+            name={quill.name}
           />
         ))}
       </MapView>

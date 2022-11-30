@@ -31,18 +31,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#CCFFCC',
     height: '100%',
   },
-  button: {
-    flex: 1,
-    alignItems: 'center',
-    borderWidth: 4,
-    borderRadius: 5,
-    marginBottom: 5,
-    borderColor: '#EC729C',
-    backgroundColor: '#EC729C',
-    marginRight: 200,
-    marginLeft: 20,
-    marginTop: 5,
-  },
   label: {
     fontSize: 30,
     color: 'white',
