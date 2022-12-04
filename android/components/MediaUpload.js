@@ -8,17 +8,14 @@ import {
 } from 'react-native';
 import {UserContext} from '../global/GlobalContext';
 
-export default function MediaUpload(props) {
-  //allow for users to press a button to upload a photo
+export default function MediaUpload() {
+  const [file, setFile] = React.useState();
 
-  return (
-    //jsx to for button to upload photo
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => props.navigation.goBack()}>
-        <Text style={styles.label}>Back</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handleUploadClick = () => {};
 }

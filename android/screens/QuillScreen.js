@@ -26,11 +26,11 @@ export default function QuillScreen(props, navigation) {
         <View style={styles.nameContainer}>
           <TextInput
             style={styles.label}
-            onSubmitEditing={event => {
-              quill.name = event.nativeEvent.text;
+            onChange={event => {
+              quill.title = event.nativeEvent.text;
               setQuills(quills);
             }}>
-            {quill.name}
+            {quill.title}
           </TextInput>
         </View>
         <Text style={styles.descriptionLabel}>Description:</Text>
@@ -38,7 +38,7 @@ export default function QuillScreen(props, navigation) {
           <TextInput
             style={styles.label}
             multiline={true}
-            onSubmitEditing={event => {
+            onChange={event => {
               quill.description = event.nativeEvent.text;
               setQuills(quills);
             }}>

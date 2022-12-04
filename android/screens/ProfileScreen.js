@@ -1,7 +1,8 @@
 import React, {useContext} from 'react';
-import {Text, View, StyleSheet, Div, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import ProfileComponent from '../components/ProfileComponent';
 import {UserContext} from '../global/GlobalContext';
+import ExportProfile from '../components/ExportProfile';
 
 export default function ProfileScreen(props, route, navigation) {
   const {quills, setQuills, clearMarkers} = useContext(UserContext);
@@ -18,14 +19,17 @@ export default function ProfileScreen(props, route, navigation) {
         />
       </View>
       <View style={styles.buttons}>
-        <TouchableOpacity style={styles.button} onPress={() => clearMarkers()}>
-          <Text style={styles.label}>Clear</Text>
-        </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => props.navigation.goBack()}>
           <Text style={styles.label}>Back</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => clearMarkers()}>
+          <Text style={styles.label}>Clear</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.exportView}>
+        <ExportProfile />
       </View>
     </View>
   );
@@ -53,11 +57,12 @@ const styles = StyleSheet.create({
   },
   buttons: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'row',
   },
   button: {
     inline: 'flex',
-    height: '40%',
+    height: '80%',
+    width: '40%',
     alignItems: 'center',
     borderWidth: 4,
     borderRadius: 5,
@@ -67,6 +72,22 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginLeft: 20,
     marginTop: 5,
+  },
+  exportButton: {
+    width: '90%',
+    alignItems: 'center',
+    borderWidth: 4,
+    borderRadius: 5,
+    marginBottom: 5,
+    borderColor: '#EC729C',
+    backgroundColor: '#EC729C',
+    marginRight: 20,
+    marginLeft: 20,
+    marginTop: 5,
+  },
+  exportView: {
+    flex: 1,
+    flexDirection: 'column',
   },
   label: {
     fontSize: 30,

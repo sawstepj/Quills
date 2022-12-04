@@ -11,6 +11,7 @@ export default function GlobalContext({subPages}) {
       },
       title: 'Example',
       description: 'Here is an example of a quill',
+      media: [],
     },
   ]);
   //addMarker function
