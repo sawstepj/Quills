@@ -15,7 +15,7 @@ export default function QuillScreen(props, navigation) {
   //   console.log('quill coordinates', quill.coordinate);
   return (
     <View style={styles.container}>
-      <View style={styles.coordinateContainer}>
+      <View style={[styles.coordinateContainer, styles.shadowProp]}>
         <Text style={styles.label}>{quills.indexOf(quill) + 1}</Text>
         <Text style={styles.label}>
           Coordinates: {quill.coordinate.latitude}, {quill.coordinate.longitude}
@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     borderColor: '#EC729C',
     borderRadius: 5,
     backgroundColor: '#EC729C',
+    boxShadow: '1px 2px 9px #888888',
   },
   contentContainer: {
     height: '63%',
@@ -121,10 +122,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#EC729C',
     marginRight: 200,
     marginLeft: 20,
-    marginTop: 30,
+    marginTop: '2.5%',
   },
   label: {
-    fontSize: 30,
+    fontSize: 25,
     color: 'white',
   },
   descriptionLabel: {
@@ -137,5 +138,11 @@ const styles = StyleSheet.create({
     color: 'black',
     right: '35%',
     top: '-10%',
+  },
+  shadowProp: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
 });

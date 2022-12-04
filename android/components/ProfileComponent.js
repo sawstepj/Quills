@@ -7,7 +7,7 @@ export default function ProfileComponent(props, navigation) {
       {props.quills.map((quill, index) => {
         return (
           <TouchableOpacity
-            style={styles.button}
+            style={[styles.button, styles.shadowProp]}
             quills={quill}
             key={index}
             navigation={props.navigation}
@@ -43,5 +43,12 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 30,
     color: 'white',
+  },
+  shadowProp: {
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 5,
   },
 });

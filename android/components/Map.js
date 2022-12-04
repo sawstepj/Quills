@@ -11,7 +11,7 @@ export default function Map(props) {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, styles.shadowProp]}>
       <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.map}
@@ -48,5 +48,12 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
+  },
+  shadowProp: {
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 5,
   },
 });
