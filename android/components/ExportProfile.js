@@ -19,7 +19,7 @@ export default function ExportProfile(props) {
         style={styles.button}
         //onPress, call GenerateProfileJSON() and then console.log the result
         onPress={() => {
-          console.log(GenerateProfileJSON(quills));
+          GenerateProfileJSON(quills);
         }}>
         <Text style={styles.label}>Export Profile</Text>
       </TouchableOpacity>

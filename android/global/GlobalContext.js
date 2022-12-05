@@ -3,6 +3,13 @@ import React, {useState} from 'react';
 export const UserContext = React.createContext('');
 
 export default function GlobalContext({subPages}) {
+  const [file, setFile] = useState([
+    {
+      name: 'test',
+      type: 'test',
+      uri: 'test',
+    },
+  ]);
   const [quills, setQuills] = useState([
     {
       coordinate: {
@@ -29,7 +36,15 @@ export default function GlobalContext({subPages}) {
     setQuills([]);
   };
   return (
-    <UserContext.Provider value={{quills, setQuills, addMarker, clearMarkers}}>
+    <UserContext.Provider
+      value={{
+        quills,
+        setQuills,
+        addMarker,
+        clearMarkers,
+        file,
+        setFile,
+      }}>
       {subPages}
     </UserContext.Provider>
   );

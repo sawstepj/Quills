@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {UserContext} from '../global/GlobalContext';
+import MediaUpload from '../components/MediaUpload';
 
 export default function QuillScreen(props, navigation) {
   //get the quill object from the navigation object
@@ -45,6 +46,10 @@ export default function QuillScreen(props, navigation) {
             {quill.description}
           </TextInput>
         </View>
+        <View style={styles.mediaContainer}>
+          <Text style={styles.mediaLabel}>Media:</Text>
+          <MediaUpload quill={quill} />
+        </View>
       </View>
       <TouchableOpacity
         style={styles.button}
@@ -74,7 +79,7 @@ const styles = StyleSheet.create({
     boxShadow: '1px 2px 9px #888888',
   },
   contentContainer: {
-    height: '63%',
+    height: '68%',
     marginTop: 20,
     marginLeft: 20,
     marginRight: 20,
@@ -87,8 +92,27 @@ const styles = StyleSheet.create({
   },
   nameContainer: {
     top: '-7.5%',
+    height: '11%',
+    width: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 4,
+    borderColor: '#EC729C',
+    borderRadius: 5,
+    backgroundColor: '#EC729C',
+  },
+  mediaContainer: {
     height: '15%',
     width: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  descriptionContainer: {
+    top: '-2.5%',
+    height: '30%',
+    width: '80%',
+    marginLeft: 20,
+    marginRight: 20,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 4,
@@ -98,19 +122,6 @@ const styles = StyleSheet.create({
   },
   textualInput: {
     BackgroundColor: '#EC729C',
-  },
-  descriptionContainer: {
-    height: '40%',
-    width: '80%',
-    marginTop: 20,
-    marginLeft: 20,
-    marginRight: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 4,
-    borderColor: '#EC729C',
-    borderRadius: 5,
-    backgroundColor: '#EC729C',
   },
   button: {
     flex: 1,
@@ -129,6 +140,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   descriptionLabel: {
+    top: '-2.5%',
     fontSize: 30,
     color: 'black',
     right: '24%',
@@ -138,6 +150,11 @@ const styles = StyleSheet.create({
     color: 'black',
     right: '35%',
     top: '-10%',
+  },
+  mediaLabel: {
+    fontSize: 30,
+    color: 'black',
+    right: '42.5%',
   },
   shadowProp: {
     shadowColor: '#171717',
