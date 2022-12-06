@@ -35,6 +35,34 @@ export default function GlobalContext({subPages}) {
   const clearMarkers = e => {
     setQuills([]);
   };
+
+  const QuillMediaSchema = {
+    name: 'QuillMedia',
+    embedded: true,
+    properties: {
+      mediaType: 'string',
+      mediaURL: 'string',
+    },
+  };
+  const QuillSchema = {
+    name: 'Quill',
+    embedded: true,
+    properties: {
+      quillNumber: 'int',
+      quillName: 'string',
+      quillDescription: 'QuillDescription',
+      quillMedia: {type: 'list', objectType: 'QuillMedia'},
+    },
+  };
+  const ProfileSchema = {
+    name: 'Profile',
+    primaryKey: 'id',
+    properties: {
+      _id: 'objectId',
+      quills: {type: 'list', objectType: 'Quill'},
+    },
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -44,6 +72,9 @@ export default function GlobalContext({subPages}) {
         clearMarkers,
         file,
         setFile,
+        ProfileSchema,
+        QuillSchema,
+        QuillMediaSchema,
       }}>
       {subPages}
     </UserContext.Provider>

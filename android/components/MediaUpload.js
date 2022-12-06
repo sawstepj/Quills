@@ -2,13 +2,10 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import {UserContext} from '../global/GlobalContext';
-import firebase from 'firebase/app';
-import database from '../../Firebase/firebase';
+import Realm from 'realm';
 
 export default function MediaUpload() {
-  const {quills, file, setFile} = React.useContext(UserContext);
-  //initialize firebase database
-  const db = database;
+  const {quills, file, setFile, ProfileSchema} = React.useContext(UserContext);
 
   const uploadImage = async () => {
     // Check if any file is selected or not
@@ -18,19 +15,33 @@ export default function MediaUpload() {
       const data = new FormData();
       data.append('name', 'Image Upload');
       data.append('file_attachment', fileToUpload);
-      // Please change file upload URL
-      const docRef = db.collection('files').doc(quills.title);
-      let res = await docRef.set({
-        quill: quills.title,
-        file: file,
-      });
-      let responseJson = await res.json();
-      if (responseJson.status === 1) {
-        alert('Upload Successful');
-      }
-    } else {
-      // If no file selected the show alert
-      alert('Please Select File first');
+      //write image to realm
+      (async () => {
+        const mediaUpload = {
+          name: fileToUpload.name,
+          type: fileToUpload.type,
+          uri: fileToUpload.uri,
+        };
+        const realm = await Realm.open({
+          path: 'QuillDB',
+          schema: [ProfileSchema],
+        });
+        realm.write(() => {
+          realm.create(
+            'Profile',
+            {
+              _id: 1,
+              quills: [
+                {
+                  _id: 1,
+                  media: [mediaUpload],
+                },
+              ],
+            },
+            realm.create('Quill', {}),
+          );
+        });
+      })();
     }
   };
 
@@ -40,15 +51,9 @@ export default function MediaUpload() {
       const res = await DocumentPicker.pick({
         // Provide which type of file you want user to pick
         type: [DocumentPicker.types.allFiles],
-        // There can me more options as well
-        // DocumentPicker.types.allFiles
-        // DocumentPicker.types.images
-        // DocumentPicker.types.plainText
-        // DocumentPicker.types.audio
-        // DocumentPicker.types.pdf
       });
-      // Printing the log realted to the file
-      console.log('res : ' + JSON.stringify(res));
+      // Printing the log related to the file
+      console.log('FILE LOG : ' + JSON.stringify(res));
       // Setting the state to show single file attributes
       setFile(res);
     } catch (err) {

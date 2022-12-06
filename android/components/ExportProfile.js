@@ -8,6 +8,12 @@ import {
 } from 'react-native';
 import GenerateProfileJSON from '../functions/GenerateProfileJSON';
 import {UserContext} from '../global/GlobalContext';
+import {
+  ProfileSchema,
+  QuillSchema,
+  QuillMediaSchema,
+} from '../global/GlobalSchema';
+import Realm from 'realm';
 
 export default function ExportProfile(props) {
   //allow for users to press a button to upload a photo
@@ -19,7 +25,7 @@ export default function ExportProfile(props) {
         style={styles.button}
         //onPress, call GenerateProfileJSON() and then console.log the result
         onPress={() => {
-          GenerateProfileJSON(quills);
+          //write ProfileSchema to realm
         }}>
         <Text style={styles.label}>Export Profile</Text>
       </TouchableOpacity>

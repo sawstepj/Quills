@@ -1,3 +1,5 @@
+import Realm from 'realm';
+
 export default function GenerateProfileJSON(quills) {
   const profileJson = {
     id: '1',
