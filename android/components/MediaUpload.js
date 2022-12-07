@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import {UserContext} from '../global/GlobalContext';
 
 export default function MediaUpload(props) {
-  const {quills, file, setFile} = React.useContext(UserContext);
+  const {file, setFile} = React.useContext(UserContext);
 
   const uploadImage = async () => {
     if (file != null) {

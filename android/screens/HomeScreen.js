@@ -1,9 +1,8 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import Map from '../components/Map';
 import HomeScreenButtons from '../components/HomeScreenButtons';
 import {UserContext} from '../global/GlobalContext';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function HomeScreen(props) {
   //grab the quills array and the setQuills function from the global context
@@ -13,7 +12,7 @@ export default function HomeScreen(props) {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.header}>QUILLS</Text>
+        <Text style={styles.header}>HOME</Text>
       </View>
       <Map
         quills={quills}

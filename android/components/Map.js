@@ -1,5 +1,5 @@
-import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
-import React, {useState, useEffect, useRef, Fragment} from 'react';
+import {StyleSheet, View} from 'react-native';
+import React from 'react';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 
 export default function Map(props) {

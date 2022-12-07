@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, Text, View, TextInput} from 'react-native';
 import {UserContext} from '../global/GlobalContext';
 import MediaUpload from '../components/MediaUpload';
 import Icon from 'react-native-vector-icons/FontAwesome';

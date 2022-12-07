@@ -1,11 +1,5 @@
 import React, {useContext} from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import {Text, View, StyleSheet, ScrollView} from 'react-native';
 import ProfileComponent from '../components/ProfileComponent';
 import {UserContext} from '../global/GlobalContext';
 import ExportProfile from '../components/ExportProfile';

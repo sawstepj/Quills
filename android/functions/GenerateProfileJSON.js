@@ -1,5 +1,4 @@
 import fs from 'react-native-fs';
-import {Alert, Linking} from 'react-native';
 
 export default function GenerateProfileJSON(quills) {
   const profileJson = {
