@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Profile">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Quills">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Quill" maxOccurs="unbounded">
+                                <xs:element name="Coordinates">
+                                    <xs:element name="Latitude" type="xs:float"/>
+                                    <xs:element name="Longitude" type="xs:float"/>
+                                </xs:element>
+                                    <xs:element name="Name" type="xs:string"/>
+                                    <xs:element name="Description" type="xs:string"/>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Media" type="xs:file"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+<!-- definition of simple elements -->
+<xs:element name="Profile" type="ProfileType"/>
+<xs:element name="Quills" type="QuillsType"/>
+<xs:element name="Quill" type="QuillType"/>
+<xs:element name="Coordinates" type="CoordinatesType"/>
+<xs:element name="Latitude" type="xs:float"/>
+<xs:element name="Longitude" type="xs:float"/>
+<xs:element name="Name" type="xs:string"/>
+<xs:element name="Description" type="xs:string"/>
+<xs:element name="Media" type="xs:file"/>
+
+<!-- definition of complex elements -->
+<xs:complexType name="ProfileType">
+    <xs:sequence>
+        <xs:element ref="Quills"/>
+    </xs:sequence>
+</xs:complexType>
+<xs:complexType name="QuillsType">
+    <xs:sequence>
+        <xs:element ref="Quill" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:complexType>
+<xs:complexType name="QuillType">
+    <xs:sequence>
+        <xs:element ref="Coordinates"/>
+        <xs:element ref="Name"/>
+        <xs:element ref="Description"/>
+        <xs:element ref="Media"/>
+    </xs:sequence>
+</xs:complexType>
+<xs:complexType name="CoordinatesType">
+    <xs:sequence>
+        <xs:element ref="Latitude"/>
+        <xs:element ref="Longitude"/>
+    </xs:sequence>
+</xs:complexType>
+
