@@ -2,46 +2,19 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import {UserContext} from '../global/GlobalContext';
-import Realm from 'realm';
 
-export default function MediaUpload() {
-  const {quills, file, setFile, ProfileSchema} = React.useContext(UserContext);
+export default function MediaUpload(props) {
+  const {quills, file, setFile} = React.useContext(UserContext);
 
   const uploadImage = async () => {
-    // Check if any file is selected or not
     if (file != null) {
-      // If file selected then create FormData
+      console.log('CURRENT QUILL', props.quill);
       const fileToUpload = file;
-      const data = new FormData();
-      data.append('name', 'Image Upload');
-      data.append('file_attachment', fileToUpload);
-      //write image to realm
-      (async () => {
-        const mediaUpload = {
-          name: fileToUpload.name,
-          type: fileToUpload.type,
-          uri: fileToUpload.uri,
-        };
-        const realm = await Realm.open({
-          path: 'QuillDB',
-          schema: [ProfileSchema],
-        });
-        realm.write(() => {
-          realm.create(
-            'Profile',
-            {
-              _id: 1,
-              quills: [
-                {
-                  _id: 1,
-                  media: [mediaUpload],
-                },
-              ],
-            },
-            realm.create('Quill', {}),
-          );
-        });
-      })();
+      props.quill.media.push(fileToUpload);
+      console.log('quills media', props.quill.media);
+    } else {
+      // If no file selected the show alert
+      alert('Please Select File first');
     }
   };
 
@@ -76,9 +49,7 @@ export default function MediaUpload() {
         style={styles.buttonStyle}
         activeOpacity={0.5}
         onPress={selectFile}>
-        <Text style={styles.buttonTextStyle}>
-          {file != null ? file.name : 'Select File'}
-        </Text>
+        <Text style={styles.buttonTextStyle}>Select File</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.buttonStyle}
@@ -92,7 +63,6 @@ export default function MediaUpload() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#CCFFCC',
     height: '60%',
     flexDirection: 'row',
     top: '10%',

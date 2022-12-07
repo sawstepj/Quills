@@ -1,15 +1,31 @@
 import React, {useContext} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import ProfileComponent from '../components/ProfileComponent';
 import {UserContext} from '../global/GlobalContext';
 import ExportProfile from '../components/ExportProfile';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function ProfileScreen(props, route, navigation) {
   const {quills, setQuills, clearMarkers} = useContext(UserContext);
   //render the quills array
   return (
     <View style={styles.container}>
-      <View style={styles.profileComponentContainer}>
+      <View style={styles.headerContainer}>
+        <Icon
+          name="arrow-left"
+          size={40}
+          style={styles.backButton}
+          onPress={() => props.navigation.goBack()}
+        />
+        <Text style={styles.header}>PROFILE</Text>
+      </View>
+      <ScrollView style={styles.profileComponentContainer}>
         <ProfileComponent
           style={styles.profileComponent}
           quills={quills}
@@ -17,77 +33,82 @@ export default function ProfileScreen(props, route, navigation) {
           clearMarkers={clearMarkers}
           navigation={props.navigation}
         />
-      </View>
+      </ScrollView>
       <View style={styles.buttons}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => props.navigation.goBack()}>
-          <Text style={styles.label}>Back</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => clearMarkers()}>
-          <Text style={styles.label}>Clear</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.exportView}>
-        <ExportProfile />
+        <Icon
+          name="undo"
+          size={50}
+          onPress={e => {
+            setQuills(quills.slice(0, -1));
+          }}
+        />
+        <View style={styles.exportView}>
+          <ExportProfile />
+        </View>
+        <Icon
+          name="trash"
+          size={50}
+          style={styles.clearButton}
+          onPress={e => {
+            clearMarkers(e);
+          }}
+        />
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  header: {
+    fontSize: 30,
+    color: 'white',
+    alignSelf: 'center',
+    marginLeft: '23.5%',
+  },
   container: {
     backgroundColor: '#CCFFCC',
     height: '100%',
+  },
+  headerContainer: {
+    flex: 1,
+    height: '10%',
+    flexDirection: 'row',
+    backgroundColor: '#EC729C',
   },
   profileComponent: {
     flex: 1,
     flexDirection: 'column',
   },
   profileComponentContainer: {
-    height: '82.5%',
+    top: '0%',
+    height: '76%',
     marginTop: 20,
     marginLeft: 20,
     marginRight: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
     borderWidth: 4,
     borderColor: '#EC729C',
     borderRadius: 5,
+    backgroundColor: '#CCFFE6',
+  },
+  backButton: {
+    marginTop: 5,
+    marginLeft: 10,
   },
   buttons: {
+    top: '0%',
     flex: 1,
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginLeft: '10%',
+    marginRight: '10%',
   },
-  button: {
-    inline: 'flex',
-    height: '80%',
-    width: '40%',
-    alignItems: 'center',
-    borderWidth: 4,
-    borderRadius: 5,
-    marginBottom: 5,
-    borderColor: '#EC729C',
-    backgroundColor: '#EC729C',
-    marginRight: 20,
-    marginLeft: 20,
-    marginTop: 5,
-  },
-  exportButton: {
-    width: '90%',
-    alignItems: 'center',
-    borderWidth: 4,
-    borderRadius: 5,
-    marginBottom: 5,
-    borderColor: '#EC729C',
-    backgroundColor: '#EC729C',
-    marginRight: 20,
-    marginLeft: 20,
-    marginTop: 5,
+  clearButton: {
+    marginLeft: '20%',
   },
   exportView: {
-    flex: 1,
-    flexDirection: 'column',
+    top: '0%',
+    alignSelf: 'center',
+    marginLeft: '18.5%',
   },
   label: {
     fontSize: 30,

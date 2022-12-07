@@ -9,6 +9,7 @@ export default function Map(props) {
     latitudeDelta: 0.015,
     longitudeDelta: 0.0121,
   };
+  console.log('PROPS FOR QUILLS', props.quills.props);
 
   return (
     <View style={[styles.container, styles.shadowProp]}>
@@ -36,15 +37,12 @@ export default function Map(props) {
 
 const styles = StyleSheet.create({
   container: {
-    height: '82.5%',
-    marginTop: 20,
-    marginLeft: 20,
-    marginRight: 20,
+    height: '87.5%',
+
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 4,
+
     borderColor: '#EC729C',
-    borderRadius: 5,
   },
   map: {
     ...StyleSheet.absoluteFillObject,

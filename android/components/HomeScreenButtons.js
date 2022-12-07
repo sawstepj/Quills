@@ -1,28 +1,37 @@
 import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function HomeScreenButtons(props) {
   return (
     <View style={[styles.container, styles.shadowProp]}>
+      <View style={styles.undoButton}>
+        <Icon
+          name="undo"
+          size={50}
+          onPress={e => {
+            props.setQuills(props.quills.slice(0, -1));
+          }}
+        />
+      </View>
       <View style={styles.profileButton}>
-        <TouchableOpacity
-          title="Profile"
-          style={[styles.button, styles.shadowProp]}
+        <Icon
+          name="user"
+          size={50}
+          // style={styles.shadowProp}
           onPress={e => {
             props.navigation.navigate('ProfileScreen');
-          }}>
-          <Text style={styles.label}>Profile</Text>
-        </TouchableOpacity>
+          }}
+        />
       </View>
       <View style={styles.clearButton}>
-        <TouchableOpacity
-          title="Clear"
+        <Icon
+          name="trash"
+          size={50}
           onPress={e => {
             props.clearMarkers(e);
           }}
-          style={[styles.button, styles.shadowProp]}>
-          <Text style={styles.label}>Clear</Text>
-        </TouchableOpacity>
+        />
       </View>
     </View>
   );
@@ -30,34 +39,30 @@ export default function HomeScreenButtons(props) {
 
 const styles = StyleSheet.create({
   container: {
+    top: '-10%',
+    height: '15%',
     backgroundColor: '#CCFFCC',
-    height: '12.5%',
     flexDirection: 'row',
-    borderWidth: 4,
-    borderRadius: 10,
+    borderWidth: 3,
+    borderRadius: 30,
     borderColor: '#EC729C',
-    borderBottomWidth: 0,
+    borderBottomWidth: 3,
     marginTop: 10,
     borderBottomRightRadius: 0,
     borderBottomLeftRadius: 0,
   },
-  button: {
-    alignItems: 'center',
-    borderWidth: 4,
-    borderRadius: 5,
-    marginBottom: 10,
-    borderColor: '#EC729C',
-    backgroundColor: '#EC729C',
-    marginRight: 20,
-    marginLeft: 20,
-    marginTop: 7.5,
+  clearButton: {
+    marginTop: 12,
+    marginLeft: '25%',
+  },
+  undoButton: {
+    marginTop: 12,
+    marginLeft: '10%',
   },
   profileButton: {
-    width: '45%',
-  },
-  clearButton: {
-    marginLeft: '10%',
-    width: '45%',
+    marginTop: 12,
+    marginLeft: '24%',
+    alignItems: 'center',
   },
   label: {
     fontSize: 30,

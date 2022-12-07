@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 
 export default function ProfileComponent(props, navigation) {
   return (
-    <View>
+    <View style={styles.container}>
       {props.quills.map((quill, index) => {
         return (
           <TouchableOpacity
@@ -26,10 +26,15 @@ export default function ProfileComponent(props, navigation) {
 }
 
 const styles = StyleSheet.create({
-  button: {
-    height: '100%',
-    width: 300,
+  container: {
     flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+  button: {
+    // height: '100%',
+    width: 300,
     alignItems: 'center',
     borderWidth: 4,
     borderRadius: 5,

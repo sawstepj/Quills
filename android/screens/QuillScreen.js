@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {UserContext} from '../global/GlobalContext';
 import MediaUpload from '../components/MediaUpload';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function QuillScreen(props, navigation) {
   //get the quill object from the navigation object
@@ -16,8 +17,16 @@ export default function QuillScreen(props, navigation) {
   //   console.log('quill coordinates', quill.coordinate);
   return (
     <View style={styles.container}>
+      <View style={styles.headerContainer}>
+        <Icon
+          name="arrow-left"
+          size={40}
+          style={styles.backButton}
+          onPress={() => props.navigation.goBack()}
+        />
+        <Text style={styles.header}>Quill {quills.indexOf(quill) + 1}</Text>
+      </View>
       <View style={[styles.coordinateContainer, styles.shadowProp]}>
-        <Text style={styles.label}>{quills.indexOf(quill) + 1}</Text>
         <Text style={styles.label}>
           Coordinates: {quill.coordinate.latitude}, {quill.coordinate.longitude}
         </Text>
@@ -39,34 +48,42 @@ export default function QuillScreen(props, navigation) {
           <TextInput
             style={styles.label}
             multiline={true}
+            //set placeholder text
+            placeholder="Enter description here"
             onChange={event => {
               quill.description = event.nativeEvent.text;
               setQuills(quills);
-            }}>
-            {quill.description}
-          </TextInput>
+            }}
+          />
         </View>
         <View style={styles.mediaContainer}>
           <Text style={styles.mediaLabel}>Media:</Text>
           <MediaUpload quill={quill} />
         </View>
       </View>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => props.navigation.goBack()}>
-        <Text style={styles.label}>Back</Text>
-      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  header: {
+    fontSize: 30,
+    color: 'white',
+    alignSelf: 'center',
+    marginLeft: '30%',
+  },
+  headerContainer: {
+    flex: 1,
+    height: '10%',
+    flexDirection: 'row',
+    backgroundColor: '#EC729C',
+  },
   container: {
     backgroundColor: '#CCFFCC',
     height: '100%',
   },
   coordinateContainer: {
-    height: '17%',
+    height: '15%',
     marginTop: 20,
     marginLeft: 20,
     marginRight: 20,
@@ -88,7 +105,7 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: '#EC729C',
     borderRadius: 5,
-    backgroundColor: '#CCFFCC',
+    backgroundColor: '#CCFFE6',
   },
   nameContainer: {
     top: '-7.5%',
