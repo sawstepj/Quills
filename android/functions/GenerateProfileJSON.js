@@ -1,4 +1,5 @@
-import Realm from 'realm';
+import fs from 'react-native-fs';
+import {Alert, Linking} from 'react-native';
 
 export default function GenerateProfileJSON(quills) {
   const profileJson = {
@@ -30,29 +31,50 @@ export default function GenerateProfileJSON(quills) {
       }),
     },
   };
-  //function to convert profileJson into xml
-  function jsonToXml(json) {
-    var xml = '';
-    for (var prop in json) {
-      xml += json[prop] instanceof Array ? '' : '<' + prop + '>';
-      if (json[prop] instanceof Array) {
-        for (var array in json[prop]) {
-          xml += '<' + prop + '>';
-          xml += jsonToXml(new Object(json[prop][array]));
-          xml += '</' + prop + '>';
-        }
-      } else if (typeof json[prop] === 'object') {
-        xml += jsonToXml(new Object(json[prop]));
-      } else {
-        xml += json[prop];
-      }
-      xml += json[prop] instanceof Array ? '' : '</' + prop + '>';
-    }
-    var xml = xml.replace(/<\/?[0-9]{1,}>/g, '');
-    return xml;
+
+  //function to convert json into html
+  function jsonToHTML(json) {
+    //create a string to hold the html
+    let html = '';
+    //for each quill, create a div with the quill's title, description, and coordinates
+    json.profile.quill.forEach(quill => {
+      html += `<div class="quill">
+        <h1>Quill ${quill.quillNumber}</h1>
+        <h2>${quill.quillInfo.title}</h2>
+        <p>${quill.quillInfo.description}</p>
+        <p>Latitude: ${quill.quillInfo.coordinates.latitude}</p>
+        <p>Longitude: ${quill.quillInfo.coordinates.longitude}</p>
+        <div class="media">`;
+
+      //for each media, create a div with the media's name, type, and uri
+      quill.quillInfo.media.media.forEach(media => {
+        html += `<div class="media">
+          <h3>Media ${media.mediaNumber}</h3>
+          <p>Name: ${media.mediaInfo.name}</p>
+          <p>Type: ${media.mediaInfo.type}</p>
+          <p>URI: ${media.mediaInfo.uri}</p>
+        </div>`;
+      });
+
+      html += `</div>
+      </div>`;
+    });
+
+    return html;
   }
-  //convert profileJson into xml
-  const xml = jsonToXml(profileJson);
-  console.log(xml);
-  return xml;
+  const html = jsonToHTML(profileJson);
+  //create a file with the html
+  console.log(html);
+  fs.writeFile(fs.DocumentDirectoryPath + '/profile.html', html, 'utf8')
+    .then(success => {
+      console.log('FILE WRITTEN!');
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+  //react native solution to open a file
+
+  // const url = fs.DocumentDirectoryPath + '/profile.html';
+  // //create link to open the file
+  // Linking.openURL(url).catch(err => console.error('An error occurred', err));
 }

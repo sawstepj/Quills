@@ -9,9 +9,11 @@ import {
 import GenerateProfileJSON from '../functions/GenerateProfileJSON';
 import {UserContext} from '../global/GlobalContext';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {useLinkTo} from '@react-navigation/native';
 
 export default function ExportProfile(props) {
   const {quills} = React.useContext(UserContext);
+
   return (
     <Icon
       name="share-square-o"

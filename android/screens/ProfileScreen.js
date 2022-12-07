@@ -74,6 +74,11 @@ const styles = StyleSheet.create({
     height: '10%',
     flexDirection: 'row',
     backgroundColor: '#EC729C',
+    borderWidth: 4,
+    borderColor: '#e74a80',
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderTopWidth: 0,
   },
   profileComponent: {
     flex: 1,

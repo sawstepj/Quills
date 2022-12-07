@@ -27,13 +27,20 @@ export default function QuillScreen(props, navigation) {
         <Text style={styles.header}>Quill {quills.indexOf(quill) + 1}</Text>
       </View>
       <View style={[styles.coordinateContainer, styles.shadowProp]}>
-        <Text style={styles.label}>
-          Coordinates: {quill.coordinate.latitude}, {quill.coordinate.longitude}
+        <Text style={styles.coordinateLabel}>Coordinates</Text>
+        <View style={styles.horizontalLine} />
+        <Text style={styles.coordinateLatitude}>
+          {/* latitude trimmed to 4 decimal places */}
+          Latitude: {quill.coordinate.latitude.toFixed(5)}
+        </Text>
+        <Text style={styles.coordinateLongitude}>
+          Longitude: {quill.coordinate.longitude.toFixed(5)}
         </Text>
       </View>
       <View style={styles.contentContainer}>
-        <Text style={styles.nameLabel}>Name:</Text>
         <View style={styles.nameContainer}>
+          <Text style={styles.nameLabel}>Name</Text>
+          <View style={styles.horizontalLine} />
           <TextInput
             style={styles.label}
             onChange={event => {
@@ -43,21 +50,25 @@ export default function QuillScreen(props, navigation) {
             {quill.title}
           </TextInput>
         </View>
-        <Text style={styles.descriptionLabel}>Description:</Text>
         <View style={styles.descriptionContainer}>
+          <Text style={styles.descriptionLabel}>Description</Text>
+          <View style={styles.horizontalLine} />
           <TextInput
             style={styles.label}
             multiline={true}
             //set placeholder text
-            placeholder="Enter description here"
             onChange={event => {
               quill.description = event.nativeEvent.text;
               setQuills(quills);
-            }}
-          />
+            }}>
+            {quill.description}
+          </TextInput>
         </View>
-        <View style={styles.mediaContainer}>
-          <Text style={styles.mediaLabel}>Media:</Text>
+        <View style={styles.mediaLabelContainer}>
+          <Text style={styles.mediaLabel}>Media</Text>
+          <View style={styles.mediaHorizontalLine} />
+        </View>
+        <View style={styles.mediaUploadContainer}>
           <MediaUpload quill={quill} />
         </View>
       </View>
@@ -66,17 +77,40 @@ export default function QuillScreen(props, navigation) {
 }
 
 const styles = StyleSheet.create({
+  backButton: {
+    top: '2%',
+    alignSelf: 'center',
+    marginLeft: '2%',
+  },
+  horizontalLine: {
+    borderBottomColor: '#e74a80',
+    borderBottomWidth: 4,
+    width: '100%',
+  },
+  mediaHorizontalLine: {
+    top: '-70%',
+    borderBottomColor: '#e74a80',
+    borderBottomWidth: 4,
+    width: '100%',
+  },
   header: {
+    top: '2%',
     fontSize: 30,
     color: 'white',
     alignSelf: 'center',
-    marginLeft: '30%',
+    marginLeft: '27%',
   },
   headerContainer: {
+    bottom: '3%',
     flex: 1,
     height: '10%',
     flexDirection: 'row',
     backgroundColor: '#EC729C',
+    borderWidth: 4,
+    borderColor: '#e74a80',
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderTopWidth: 0,
   },
   container: {
     backgroundColor: '#CCFFCC',
@@ -90,7 +124,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 4,
-    borderColor: '#EC729C',
+    borderColor: '#e74a80',
     borderRadius: 5,
     backgroundColor: '#EC729C',
     boxShadow: '1px 2px 9px #888888',
@@ -100,40 +134,50 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 20,
     marginRight: 20,
+    marginBottom: 20,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 4,
-    borderColor: '#EC729C',
+    borderColor: '#e74a80',
     borderRadius: 5,
     backgroundColor: '#CCFFE6',
   },
   nameContainer: {
-    top: '-7.5%',
-    height: '11%',
-    width: '80%',
+    top: '-5.5%',
+    height: '15%',
+    width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 4,
-    borderColor: '#EC729C',
+    borderColor: '#e74a80',
     borderRadius: 5,
     backgroundColor: '#EC729C',
   },
-  mediaContainer: {
-    height: '15%',
-    width: '80%',
+  mediaLabelContainer: {
+    top: '2.5%',
+    height: '25%',
+    width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#EC729C',
+    borderColor: '#e74a80',
+    borderWidth: 4,
+    borderRadius: 5,
+  },
+  mediaUploadContainer: {
+    top: '12.5%',
+    height: '15%',
   },
   descriptionContainer: {
     top: '-2.5%',
-    height: '30%',
-    width: '80%',
+    height: '25%',
+    width: '90%',
     marginLeft: 20,
     marginRight: 20,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 4,
-    borderColor: '#EC729C',
+    borderColor: '#e74a80',
     borderRadius: 5,
     backgroundColor: '#EC729C',
   },
@@ -157,21 +201,38 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   descriptionLabel: {
-    top: '-2.5%',
+    top: '-8%',
     fontSize: 30,
-    color: 'black',
+    color: 'white',
     right: '24%',
+    marginBottom: -10,
   },
   nameLabel: {
+    top: '6%',
     fontSize: 30,
-    color: 'black',
+    color: 'white',
     right: '35%',
-    top: '-10%',
   },
   mediaLabel: {
+    top: '-5%',
+    flex: 1,
     fontSize: 30,
-    color: 'black',
-    right: '42.5%',
+    color: 'white',
+    alignSelf: 'flex-start',
+  },
+  coordinateLabel: {
+    fontSize: 30,
+    color: 'white',
+    flex: 1,
+    alignSelf: 'flex-start',
+  },
+  coordinateLatitude: {
+    fontSize: 25,
+    color: 'white',
+  },
+  coordinateLongitude: {
+    fontSize: 25,
+    color: 'white',
   },
   shadowProp: {
     shadowColor: '#171717',

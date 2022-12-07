@@ -65,16 +65,16 @@ const styles = StyleSheet.create({
   container: {
     height: '60%',
     flexDirection: 'row',
-    top: '10%',
+    top: '-10%',
   },
   buttonStyle: {
     alignItems: 'center',
     borderWidth: 4,
     borderRadius: 5,
-    borderColor: '#EC729C',
+    borderColor: '#e74a80',
     backgroundColor: '#EC729C',
-    marginRight: 10,
-    marginLeft: 10,
+    marginRight: 5,
+    marginLeft: 5,
   },
   buttonTextStyle: {
     fontSize: 30,

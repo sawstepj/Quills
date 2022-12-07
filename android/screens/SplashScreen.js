@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 4,
     borderRadius: 5,
-    borderColor: '#EC729C',
+    borderColor: '#e74a80',
     backgroundColor: '#EC729C',
     paddingLeft: '5%',
     paddingRight: '5%',
@@ -67,6 +67,6 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 30,
-    color: '#CCFFCC',
+    color: 'white',
   },
 });
