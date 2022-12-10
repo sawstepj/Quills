@@ -2,31 +2,33 @@ import fs from 'react-native-fs';
 
 export default function GenerateProfileJSON(quills) {
   const profileJson = {
-    profile: {
+    Profile: {
       //for each quill, create a json object with the quill's title, description, and coordinates
-      quill: quills.map(quill => {
-        return {
-          quillNumber: quills.indexOf(quill) + 1,
-          quillInfo: {
-            title: quill.title,
-            description: quill.description,
-            coordinates: quill.coordinate,
-            media: {
-              mediaNumber: quill.media.length,
-              mediaData: quill.media.map(media => {
-                return {
-                  mediaNumber: quill.media.indexOf(media) + 1,
-                  mediaInfo: {
-                    name: media.name,
-                    type: media.type,
-                    uri: media.uri,
-                  },
-                };
-              }),
+      Quills: {
+        Quill: quills.map(quill => {
+          return {
+            QuillNumber: quills.indexOf(quill) + 1,
+            QuillInfo: {
+              Title: quill.title,
+              Description: quill.description,
+              Coordinates: quill.coordinate,
+              Media: {
+                MediaNumber: quill.media.length,
+                MediaData: quill.media.map(media => {
+                  return {
+                    MediaNumber: quill.media.indexOf(media) + 1,
+                    MediaInfo: {
+                      Name: media.name,
+                      Type: media.type,
+                      Uri: media.uri,
+                    },
+                  };
+                }),
+              },
             },
-          },
-        };
-      }),
+          };
+        }),
+      },
     },
   };
 
@@ -52,5 +54,21 @@ export default function GenerateProfileJSON(quills) {
     return xml;
   }
 
-  console.log(jsonToXml(profileJson));
+  const jsonToXmlString = jsonToXml(profileJson);
+  //write jsonToXmlString to a file
+  fs.writeFile(
+    fs.ExternalDirectoryPath + '/profile.xml',
+    jsonToXmlString,
+    'utf8',
+  )
+    .then(success => {
+      console.log('FILE WRITTEN!');
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+  //create link to file
+  const link = fs.ExternalDirectoryPath + '/profile.xml';
+
+  console.log(link);
 }

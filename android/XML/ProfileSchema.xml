@@ -7,17 +7,37 @@
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="Quill" maxOccurs="unbounded">
-                                <xs:element name="Coordinates">
-                                    <xs:element name="Latitude" type="xs:float"/>
-                                    <xs:element name="Longitude" type="xs:float"/>
-                                </xs:element>
-                                    <xs:element name="Name" type="xs:string"/>
-                                    <xs:element name="Description" type="xs:string"/>
-                                <xs:complexType>
+                                <xs:element name="QuillNumber"/>
+                                <xs:complexType name="QuillInfo">
                                     <xs:sequence>
-                                        <xs:element name="Media" type="xs:file"/>
+                                        <xs:element name="Title" type="xs:string"/>
+                                        <xs:element name="Description" type="xs:string"/>
+                                        <xs:element name="Coordinates" type="xs:string"/>
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="Media" type="xs:file">
+                                                    <xs:complexType>
+                                                        <xs:sequence>
+                                                            <xs:element name="MediaNumber"/>
+                                                            <xs:complexType name="MediaData">
+                                                                <xs:sequence>
+                                                                    <xs:element name="MediaNumber"/>
+                                                                    <xs:complexType name="MediaInfo">
+                                                                        <xs:sequence>
+                                                                            <xs:element name="Name" type="xs:string"/>
+                                                                            <xs:element name="Type" type="xs:string"/>
+                                                                            <xs:element name="Uri" type="xs:string"/>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:sequence>
+                                                            </xs:complexType>
+                                                        </xs:sequence>
+                                                    </xs:complexType>
+                                            </xs:sequence>
+                                        </xs:complexType>
                                     </xs:sequence>
                                 </xs:complexType>
+                                </xs:element>
                             </xs:element>
                         </xs:sequence>
                     </xs:complexType>
@@ -26,6 +46,7 @@
         </xs:complexType>
     </xs:element>
 </xs:schema>
+
 
 <!-- definition of simple elements -->
 <xs:element name="Profile" type="ProfileType"/>
@@ -76,17 +97,43 @@
                 <latitude>37.78825</latitude>
                 <longitude>-122.4324</longitude>
             </coordinates>
-            <mediaData>
+            <media>
                 <mediaNumber>1</mediaNumber>
-                    <media>
-                    <mediaNumber>1</mediaNumber>
-                        <mediaInfo>
-                            <name>undefined</name>
-                            <type>undefined</type>
-                            <uri>undefined</uri>
-                        </mediaInfo>
-                </media>
-            </mediaData>
+                <mediaData>
+                <mediaNumber>1</mediaNumber>
+                    <mediaInfo>
+                        <name>undefined</name>
+                        <type>undefined</type>
+                        <uri>undefined</uri>
+                    </mediaInfo>
+                </mediaData>
+            </media>
+        </quillInfo>
+    </quill>
+</profile>
+
+
+<profile>
+    <quill>
+        <quillNumber>1</quillNumber>
+        <quillInfo>
+            <title>Example</title>
+            <description>Here is an example of a quill</description>
+            <coordinates>
+                <latitude>37.78825</latitude>
+                <longitude>-122.4324</longitude>
+            </coordinates>
+            <media>
+                <mediaNumber>1</mediaNumber>
+                <mediaData>
+                <mediaNumber>1</mediaNumber>
+                    <mediaInfo>
+                        <name>test</name>
+                        <type>test</type>
+                        <uri>test</uri>
+                    </mediaInfo>
+                </mediaData>
+            </media>
         </quillInfo>
     </quill>
 </profile>
