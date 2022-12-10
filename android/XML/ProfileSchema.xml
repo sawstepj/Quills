@@ -64,3 +64,29 @@
     </xs:sequence>
 </xs:complexType>
 
+
+<id>1</id>
+<profile>
+    <quill>
+        <quillNumber>1</quillNumber>
+        <quillInfo>
+            <title>Example</title>
+            <description>Here is an example of a quill</description>
+            <coordinates>
+                <latitude>37.78825</latitude>
+                <longitude>-122.4324</longitude>
+            </coordinates>
+            <mediaData>
+                <mediaNumber>1</mediaNumber>
+                    <media>
+                    <mediaNumber>1</mediaNumber>
+                        <mediaInfo>
+                            <name>undefined</name>
+                            <type>undefined</type>
+                            <uri>undefined</uri>
+                        </mediaInfo>
+                </media>
+            </mediaData>
+        </quillInfo>
+    </quill>
+</profile>

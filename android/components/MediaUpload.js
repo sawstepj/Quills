@@ -9,9 +9,13 @@ export default function MediaUpload(props) {
   const uploadImage = async () => {
     if (file != null) {
       console.log('CURRENT QUILL', props.quill);
-      const fileToUpload = file;
+      //set fileToUpload to the file object in file array
+      const fileToUpload = {
+        name: file.name,
+        type: file.type,
+        uri: file.uri,
+      };
       props.quill.media.push(fileToUpload);
-      console.log('quills media', props.quill.media);
     } else {
       // If no file selected the show alert
       alert('Please Select File first');
@@ -23,12 +27,14 @@ export default function MediaUpload(props) {
     try {
       const res = await DocumentPicker.pick({
         // Provide which type of file you want user to pick
-        type: [DocumentPicker.types.allFiles],
+        type: DocumentPicker.types.allFiles,
       });
       // Printing the log related to the file
-      console.log('FILE LOG : ' + JSON.stringify(res));
+      console.log('FILE LOG : ' + JSON.stringify(res[0]));
       // Setting the state to show single file attributes
-      setFile(res);
+      setFile(res[0]);
+      //console log current file in media prop of current quill
+      console.log('CURRENT QUILL', props.quill);
     } catch (err) {
       setFile(null);
       // Handling any exception (If any)

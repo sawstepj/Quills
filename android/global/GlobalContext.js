@@ -17,7 +17,7 @@ export default function GlobalContext({subPages}) {
       },
       title: 'Example',
       description: 'Here is an example of a quill',
-      media: [file],
+      media: file,
     },
   ]);
   //addMarker function
@@ -28,7 +28,7 @@ export default function GlobalContext({subPages}) {
         coordinate: e.nativeEvent.coordinate,
         title: 'New Quill',
         description: 'Here is a new quill',
-        media: [file],
+        media: file,
       },
     ]);
   };
