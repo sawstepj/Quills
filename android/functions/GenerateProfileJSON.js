@@ -1,13 +1,24 @@
 import fs from 'react-native-fs';
+import React from 'react';
+import {
+  TouchableOpacity,
+  View,
+  Modal,
+  StyleSheet,
+  Text,
+  Linking,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function GenerateProfileJSON(quills) {
+export default function GenerateProfileJSON(props) {
+  const [modalVisible, setModalVisible] = React.useState(false);
   const profileJson = {
     Profile: {
       //for each quill, create a json object with the quill's title, description, and coordinates
       Quills: {
-        Quill: quills.map(quill => {
+        Quill: props.quills.map(quill => {
           return {
-            QuillNumber: quills.indexOf(quill) + 1,
+            QuillNumber: props.quills.indexOf(quill) + 1,
             QuillInfo: {
               Title: quill.title,
               Description: quill.description,
@@ -32,7 +43,7 @@ export default function GenerateProfileJSON(quills) {
     },
   };
 
-  //function to convert rofileJson into xml
+  //function to convert profileJson into xml
   function jsonToXml(json) {
     var xml = '';
     for (var prop in json) {
@@ -69,6 +80,33 @@ export default function GenerateProfileJSON(quills) {
     });
   //create link to file
   const link = fs.ExternalDirectoryPath + '/profile.xml';
+  console.log('link: ', link);
+  return (
+    <View style={styles.exportView}>
+      <Icon
+        name="share-square-o"
+        size={50}
+        onPress={() => {
+          setModalVisible(true);
+        }}
+      />
 
-  console.log(link);
+      <Modal visible={modalVisible}>
+        <View>
+          <TouchableOpacity onPress={() => Linking.openURL(link)}>
+            <Text>Open File</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setModalVisible(false)} />
+        </View>
+      </Modal>
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  exportView: {
+    top: '0%',
+    alignSelf: 'center',
+    marginLeft: '18.5%',
+  },
+});
