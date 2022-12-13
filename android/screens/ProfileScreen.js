@@ -1,17 +1,9 @@
 import React, {useContext} from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  Modal,
-  TouchableOpacity,
-} from 'react-native';
+import {Text, View, StyleSheet, ScrollView} from 'react-native';
 import ProfileComponent from '../components/ProfileComponent';
 import {UserContext} from '../global/GlobalContext';
-import ExportProfile from '../components/ExportProfile';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import GenerateProfileJSON from '../functions/GenerateProfileJSON';
+import GenerateProfileJSON from '../components/GenerateProfileXML';
 
 export default function ProfileScreen(props, route, navigation) {
   const {quills, setQuills, clearMarkers} = useContext(UserContext);
