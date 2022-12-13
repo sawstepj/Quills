@@ -92,11 +92,11 @@ export default function GenerateProfileJSON(props) {
       />
 
       <Modal visible={modalVisible}>
-        <View>
+        <View style={styles.modalView}>
           <TouchableOpacity onPress={() => Linking.openURL(link)}>
             <Text>Open File</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setModalVisible(false)} />
+          <Icon name="xmark" size={50} onPress={() => setModalVisible(false)} />
         </View>
       </Modal>
     </View>
@@ -108,5 +108,13 @@ const styles = StyleSheet.create({
     top: '0%',
     alignSelf: 'center',
     marginLeft: '18.5%',
+  },
+  modalView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 300,
+    height: 300,
+    padding: 20,
+    backgroundColor: '#00000080',
   },
 });
